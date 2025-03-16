@@ -1,6 +1,23 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
 const Register = () => {
+  const { createUser } = useContext(AuthContext);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const email = form.email.value;
+    const password = form.password.value;
+
+    createUser(email, password)
+      .then((result) => {
+        console.log(result);
+      })
+      .catch((error) => {
+        console.log(error);
+      });
+  };
   return (
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col md:flex-row ">
@@ -13,33 +30,37 @@ const Register = () => {
           </p>
         </div>
         <div className="card bg-base-100 w-full md:w-1/2 shrink-0 shadow-2xl">
-          <div className="card-body">
-            <fieldset className="fieldset">
-              <label className="fieldset-label">Email</label>
-              <input
-                type="email"
-                className="input w-full"
-                placeholder="Email"
-              />
-              <label className="fieldset-label">Password</label>
-              <input
-                type="password"
-                className="input w-full"
-                placeholder="Password"
-              />
-              <div>
-                <p className="">
-                  Already have an account?{" "}
-                  <Link className="underline" to="/signin">
-                    Sign In
-                  </Link>{" "}
-                </p>
-              </div>
-              <button className="btn btn-error text-white mt-4 ">
-                Register
-              </button>
-            </fieldset>
-          </div>
+          <form onSubmit={handleSubmit}>
+            <div className="card-body">
+              <fieldset className="fieldset">
+                <label className="fieldset-label">Email</label>
+                <input
+                  type="email"
+                  className="input w-full"
+                  placeholder="Email"
+                  name="email"
+                />
+                <label className="fieldset-label">Password</label>
+                <input
+                  type="password"
+                  className="input w-full"
+                  placeholder="Password"
+                  name="password"
+                />
+                <div>
+                  <p className="">
+                    Already have an account?{" "}
+                    <Link className="underline" to="/signin">
+                      Sign In
+                    </Link>{" "}
+                  </p>
+                </div>
+                <button className="btn btn-error text-white mt-4 ">
+                  Register
+                </button>
+              </fieldset>
+            </div>
+          </form>
         </div>
       </div>
     </div>
