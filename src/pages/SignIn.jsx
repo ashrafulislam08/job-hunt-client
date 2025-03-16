@@ -1,10 +1,9 @@
 import { useContext } from "react";
-import { Link } from "react-router-dom";
-import AuthContext from "../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import AuthContext from "../context/AuthContext";
 
-const Register = () => {
-  const { createUser } = useContext(AuthContext);
+const SignIn = () => {
+  const { signInUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -12,7 +11,7 @@ const Register = () => {
     const email = form.email.value;
     const password = form.password.value;
 
-    createUser(email, password)
+    signInUser(email, password)
       .then((result) => {
         console.log(result);
         navigate("/");
@@ -52,14 +51,14 @@ const Register = () => {
                 />
                 <div>
                   <p className="">
-                    Already have an account?{" "}
-                    <Link className="underline" to="/signin">
-                      Sign In
+                    New to this site?{" "}
+                    <Link className="underline" to="/register">
+                      Register
                     </Link>{" "}
                   </p>
                 </div>
                 <button className="btn btn-error text-white mt-4 ">
-                  Register
+                  Login
                 </button>
               </fieldset>
             </div>
@@ -70,4 +69,4 @@ const Register = () => {
   );
 };
 
-export default Register;
+export default SignIn;
