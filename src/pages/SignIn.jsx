@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
+import { Link } from "react-router-dom";
 
 const SignIn = () => {
   const { signInUser } = useContext(AuthContext);
@@ -24,7 +25,7 @@ const SignIn = () => {
     <div className="hero bg-base-200 min-h-screen">
       <div className="hero-content flex-col md:flex-row ">
         <div className="text-center lg:text-left md:w-1/3">
-          <h1 className="text-5xl font-bold text-red-400">Register now!</h1>
+          <h1 className="text-5xl font-bold text-red-400">SignIn now!</h1>
           <p className="py-6">
             Provident cupiditate voluptatem et in. Quaerat fugiat ut assumenda
             excepturi exercitationem quasi. In deleniti eaque aut repudiandae et
@@ -58,7 +59,7 @@ const SignIn = () => {
                   </p>
                 </div>
                 <button className="btn btn-error text-white mt-4 ">
-                  Login
+                  Sign In
                 </button>
               </fieldset>
             </div>
